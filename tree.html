@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+ <!--style="position:absolute;top:35vw;left:46vw;width:10vw;z-index:1"-->
+<html>
+
+<head>
+<style>
+
+
+</style>
+</head>
+
+<body> 
+
+<div>
+<!--
+  <div id="light" style="position:absolute;top:10vw;left:30vw;  
+background:pink;width:20px;height:20px;  
+border-radius:15px;z-index:1"></div>
+-->
+<img src="https://i.imgur.com/omX5Drl.png" style="position:absolute;left:30vw;width:35%;z-index:1">
+<img src="https://imgur.com/zuuKlvv.png" style="position:absolute;top:36vw;left:47vw;width:10%;z-index:1">
+<img src="https://imgur.com/zuuKlvv.png" style="position:absolute;top:36vw;left:35vw;width:10%;z-index:1">
+<img src="https://i.imgur.com/Q3YO4bi.png" style="position:absolute;top:38vw;left:40vw;width:10%;z-index:1">
+
+<!--Candy-->
+<img src="https://imgur.com/URdKQNv.png" style="position:absolute;top:10vw;left:40vw;width:5%;z-index:1">
+<img src="https://imgur.com/4XAdcd5.png" style="position:absolute;top:15vw;left:36vw;width:5%;z-index:1">
+<img src="https://imgur.com/URdKQNv.png" style="position:absolute;top:20vw;left:42vw;width:5%;z-index:1">
+<img src="https://imgur.com/j19NFaa.png" style="position:absolute;top:25vw;left:48vw;width:5%;z-index:1">
+
+<button id="toggle" style="position:absolute;top:1vw;left:45vw;z-index:1">Turn OFF</button>
+
+</div>
+
+
+
+<script>
+class Light {
+  
+  constructor(id) {
+  	// create/append div dynamically
+    // https://stackoverflow.com/questions/14004117/create-div-and-append-div-dynamically
+    this.element = document.createElement ('div');
+    //this = iDiv;
+    this.element.id = id;
+    // set element style attribute
+    //https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style
+    this.element.style.cssText = "position:absolute;width:30px;height:30px;border-radius:30px;z-index:1"; 
+	this.element.style.top = '25vw';
+    this.element.style.left = '35vw';
+    // CSS color property: https://www.w3schools.com/cssref/pr_text_color.asp
+    // hsl: https://www.w3schools.com/colors/colors_hsl.asp
+    this.element.style.background = "hsl(89, 0%, 80%)";
+    document.getElementsByTagName('body')[0].appendChild(this.element);
+  }
+
+	changeColor() {
+  	// https://stackoverflow.com/questions/45147661/javascript-recursion-within-a-class/45147713
+    var self = this;
+  	var hue = Math.random()*70;
+  	self.element.style.background = "hsl(" + hue + ", 80%, 51%)";
+    setTimeout (function() { self.changeColor() } , 500);
+		// setTimeout ( self.changeColor , 1000);  // why this is not working ...
+  }
+
+}
+////////////////////////////////
+
+var light, light2, light3, light4, light5, light6, light7, light8, light9, light10, light11, light12;
+
+init();
+ON();
+function init(){
+  light = new Light();
+  light2 = new Light();
+  light2.element.style.top = '20vw';
+  light2.element.style.left = '40vw';
+  light3 = new Light();
+  light3.element.style.top = '10vw';
+  light3.element.style.left = '45vw';
+  light4 = new Light();
+  light4.element.style.top = '13vw';
+  light4.element.style.left = '38vw';
+  light5 = new Light();
+  light5.element.style.top = '15vw';
+  light5.element.style.left = '55vw';
+  light6 = new Light();
+  light6.element.style.top = '19vw';
+  light6.element.style.left = '49vw';
+  light7 = new Light();
+  light7.element.style.top = '23vw';
+  light7.element.style.left = '33vw';
+  light8 = new Light();
+  light8.element.style.top = '30vw';
+  light8.element.style.left = '44vw';
+  light9 = new Light();
+  light9.element.style.top = '28vw';
+  light9.element.style.left = '60vw';
+  light10 = new Light();
+  light10.element.style.top = '32vw';
+  light10.element.style.left = '37vw';
+  light11 = new Light();
+  light11.element.style.top = '23vw';
+  light11.element.style.left = '57vw';
+  light12 = new Light();
+  light12.element.style.top = '10vw';
+  light12.element.style.left = '53vw';
+  
+}
+function ON() {
+  light.changeColor();
+  light2.changeColor();
+  light3.changeColor();
+  light4.changeColor();
+  light5.changeColor();
+  light6.changeColor();
+  light7.changeColor();
+  light8.changeColor();
+  light9.changeColor();
+  light10.changeColor();
+  light11.changeColor();
+  light12.changeColor();
+}
+function OFF() {
+  init();
+}
+
+var status = 0;
+var b = document.getElementById ("toggle");
+
+b.addEventListener("click", function(){
+  console.log(status);
+  if (status == 1) {
+	status = 0;
+    b.innerHTML = "Turn OFF";
+	ON();
+  } else {
+  	status = 1;
+    b.innerHTML = "Turn ON";
+	OFF();
+  }
+	console.log(status);
+});
+
+
+
+
+
+</script>
+</body>
+
+</html>
