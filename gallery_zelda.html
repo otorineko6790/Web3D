@@ -1,0 +1,75 @@
+<html>
+<head>
+<title></title>
+<meta HTTP-EQUIV="Content-Type" content="text/html; charset=UTF-8">
+<meta HTTP-EQUIV="Expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+<meta HTTP-EQUIV="Pragma" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.6">
+</head>
+<style>
+#container {
+  width: 50%;
+  height: 81%;
+  float: left;
+  background-color: gray;
+  margin: 10px;
+  text-align: center;
+}
+
+#tools{
+	text-align: center;
+}
+
+#tView{
+	margin: 10px;
+}
+
+p {
+  margin: 10px;
+  text-align: justify;
+}
+</style>
+<body>
+<h1 style="font-size:2em; text-align:center; margin:15px">Zelda Majora's Mask</h1>
+
+<hr>
+<div id="tools">
+  <a href="javascript:toggleCamera()">change cam</a>
+  <button id="tView" style="width:10%">Toggle Light</button>
+  <input type=range min=0 max=1 step=0.1 id='intensity'> intensity
+  <select id="paintView" onclick="paintView()">
+	<option value="sel">選擇畫作</option>
+	<option value="p1">德庫矮人</option>
+    <option value="p2">薩爾達傳說</option>
+	<option value="p3">快樂的面具商人</option>
+	<option value="p4">索拉面具</option>
+	<option value="p5">月亮</option>
+	<option value="p6">穆修拉的面具</option>
+  </select>
+</div>
+
+<div id="container">
+  <!--canvas id='mycanvas'></canvas-->
+
+</div>
+<img src="https://i.imgur.com/VFNHRLw.png" width="500" height="187" alt="guaid" usemap="#chanCam">
+
+<map name="chanCam">
+  <area shape="circle" coords="432, 162, 17" alt="cam1" href="javascript: chanCam('cam1');">
+  <area shape="circle" coords="256, 26, 17" alt="cam2" href="javascript: chanCam('cam2');">
+  <area shape="circle" coords="80, 161, 17" alt="cam3" href="javascript: chanCam('cam3');">
+  <area shape="circle" coords="466, 31, 24" alt="nocam" href="javascript: chanCam('nocam');">
+</map>
+
+<p></p>
+<hr>
+<p>遊戲發生在塔米尼亞，該地是薩爾達傳說系列故事發生地海拉爾的另類版本。</p>
+<p>
+遊戲開始時骷髏小孩已將古老具有強大魔力的穆修拉面具盜走。受到面具的邪惡力量影響，骷髏小孩把月亮吸引到朝塔米尼亞移動，計於三天後墜毀於該地。因而林克要在三天中不斷來回以收集四大巨人的面具，在最後的六小時中把他們召喚出來，把月亮停止再往塔米尼亞下降</p>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/84/three.min.js"></script>
+<script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="web3d_hw3.js"></script>
+</body>
+</html>
