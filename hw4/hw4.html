@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<body> 
+<h1 style="text-align:center"> HW4 </h1>
+
+<hr>
+
+<div id="container" style="float:left; margin:3px; width:60vw; height:60vw">
+</div>
+<div style="float:left; margin-left: 10px; width:32vw;">
+  Radius<input type="range" id="scaleR" value="5" min="1" max="10"> 
+  <input id="bstac" style="width:100%" type="text" value="">
+  <input id="bstamin" style="width:100%" type="text" value="">
+  <input id="bstamax" style="width:100%" type="text" value="">
+  <input id="csta" style="width:100%" type="text" value="">
+  Current Configuration:<br>
+  <input id="c" style="width:100%" type="text" value="(default value)">
+  <br><br>
+  <button id="toggle" style="width:100%">Toggle motion</button>
+  <p id='greeting'></p>
+</div>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/84/three.min.js"></script>
+
+<script>
+$('#toggle').click ( function() {
+	motion = !motion;
+});
+
+var camera, scene, renderer, circle, radius;
+var mouse = new THREE.Vector2();
+var raycaster = new THREE.Raycaster();
+var rectangle = new THREE.Mesh(new THREE.PlaneGeometry(20, 10), new THREE.MeshBasicMaterial());
+var pickables = [];
+var pos, vel;
+var motion = true;
+
+init();
+animate();
+
+function init() {
+
+  var ww = $("#container").innerWidth();
+  var hh = $("#container").innerHeight();
+  renderer = new THREE.WebGLRenderer();
+  renderer.setSize(ww, hh);
+  renderer.setClearColor(0x888888);
+  $("#container").append(renderer.domElement);
+  
+  ////////////////////////////////////////////////
+
+  scene = new THREE.Scene();
+  scene.add(rectangle);
+  camera = new THREE.OrthographicCamera (-50,50,50,-50,1, 1000);
+  camera.position.z = 500;
+  //var gridXY = new THREE.GridHelper(200, 20, 'red', 'white');
+  //scene.add(gridXY);
+  let plane1 = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), new THREE.MeshBasicMaterial({
+    transparent: true,
+    opacity: 0.1,
+    visible: true,
+    color: 0x0000ff
+  }));
+  scene.add(plane1);
+  pickables.push(plane1);
+	radius = 5;
+	circle = new THREE.Mesh (new THREE.CircleGeometry (radius,20), new THREE.MeshBasicMaterial());
+  scene.add (circle);
+  
+  let geometry = new THREE.Geometry();
+  geometry.vertices.push(
+    new THREE.Vector3(-40, -40, 0),
+    new THREE.Vector3(40, -40, 0),
+    new THREE.Vector3(40, 40, 0),
+    new THREE.Vector3(-40, 40, 0),
+    new THREE.Vector3(-40, -40, 0));
+
+  let border = new THREE.Line(geometry, new THREE.LineBasicMaterial({
+    color: 0x0000ff
+  }));
+  scene.add(border);
+
+  pos = new THREE.Vector3(0, 10 ,0);
+  vel = new THREE.Vector3(5,4,0);
+  window.addEventListener('resize', onWindowResize, false);
+  window.addEventListener('mousedown', onDocumentMouseDown, false);
+}
+
+function onWindowResize() {
+  var ww = $("#container").innerWidth();
+  var hh = $("#container").innerHeight();
+
+  camera.aspect = ww / hh;
+  camera.updateProjectionMatrix();
+  renderer.setSize(ww, hh);
+}
+function onDocumentMouseDown(event) {
+  var viewportPos =$('#container').get(0).getBoundingClientRect(); 
+	mouse.x = ((event.clientX - viewportPos.left) / $('#container').innerWidth()) * 2 - 1;
+  mouse.y = -((event.clientY - viewportPos.top) / $('#container').innerHeight()) * 2 + 1;
+
+	raycaster.setFromCamera(mouse, camera);
+  var intersects = raycaster.intersectObjects (pickables);
+  if (intersects.length > 0) {
+    rectangle.position.copy(intersects[0].point);
+  }
+}
+function collision() {
+	// Call api 
+	// Need to be replaced by a public ip address
+	$.get( "http://127.0.0.1:1337/api?x1=" + (rectangle.position.x - 10) + "&y1="+ (rectangle.position.y - 5) +"&x2="+ (rectangle.position.x + 10) +"&y2=" + (rectangle.position.y + 5) + "&cx=" + pos.x + "&cy=" + pos.y + "&rr=" + radius*$('#scaleR').val()/5, function( data ) {
+		let counter = 0;
+		if(data && data.output){
+			var coords = data.output.split (" ");
+			//disc.position.set (10*coords[0], 10*coords[1], 0.0);
+			//console.log(coords);			
+			$('#bstac').val("box center(" + rectangle.position.x  + ", " + rectangle.position.y + ")");
+			$('#bstamin').val("box min(" + (rectangle.position.x - 10) + ", " + (rectangle.position.y - 5) + ")");
+			$('#bstamax').val("box max(" + (rectangle.position.x + 10)+ ", " + (rectangle.position.y + 5) + ")");
+			$('#csta').val("cx:" + pos.x + ", cy:" + pos.y + ", r:" + radius*$('#scaleR').val()/5);
+			if(coords[0]==1){
+			  console.log(data.output);
+			  $('#c').val("collision");
+			  if(Math.abs(circle.position.x - rectangle.position.x) < 10){
+				  vel.y *= -1;
+				}
+				else{
+				  vel.x *= -1;
+				}
+				console.log(++counter);
+			} else $('#c').val("NOT collision");
+			
+		}
+		
+	});
+}
+function animate() {
+	collision();
+	dt = motion ? 0.1 : 0;
+	pos.add (vel.clone().multiplyScalar(dt));
+    circle.scale.set($('#scaleR').val()/5, $('#scaleR').val()/5, $('#scaleR').val()/5);
+	if (Math.abs(pos.x) > 40 - radius*$('#scaleR').val()/5) {
+  	vel.x *= -1;  	
+  }
+	if (Math.abs(pos.y) > 40 - radius*$('#scaleR').val()/5) {
+  	vel.y *= -1;  	
+  }
+  
+  circle.position.copy(pos);
+  
+  requestAnimationFrame(animate);
+  
+  render();
+}
+
+function render() {
+  renderer.render(scene, camera);
+}
+</script>
+</body>
+
+</html>
