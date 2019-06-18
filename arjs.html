@@ -16,12 +16,12 @@
   <body style='margin : 0px; overflow: hidden;'>
   
   <div id='debug'>
-    <select>
+    <select id='poly'>
       <option value="cube">cube</option>
       <option value="ring">ring</option>
       <option value="cone">cone</option>
     </select>
-    <input type="text" name='text' id='text' value='7.30'/>
+    <input type="text" name='text' id='text' value='7.35'/>
     </div>
 
     <a-scene embedded arjs>
@@ -31,16 +31,14 @@
       <a-entity camera></a-entity>
     </a-scene>
 	<script>
-$("#food").change(function() {
+$("#poly").change(function() {
   $('#text').val($(this).val());
-	/*
 	if($(this).val() == 'cube')
 		$("#yourOrder").html("<a-box position='0 0.5 0' material='color: red;'></a-box>");
 	if($(this).val() == 'ring')
 		$("#yourOrder").html('<a-entity geometry="primitive: ring; radiusInner: 0.5; radiusOuter: 1" material="side: double"></a-entity>');
         if($(this).val() == 'cone')
 		$("#yourOrder").html('<a-entity geometry="primitive: cone; radiusBottom: 1; radiusTop: 0.1"></a-entity>');
-*/
 })
 	</script>
     </body>
