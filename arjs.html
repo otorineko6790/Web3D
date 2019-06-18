@@ -27,6 +27,7 @@
     <a-scene embedded arjs>
       <a-marker preset="hiro">
         <div id="yourOrder">
+	<a-box position='0 0.5 0' material='color: yellow;'></a-box>
         </div>
       </a-marker>
       <a-entity camera></a-entity>
@@ -34,10 +35,7 @@
 	<script>
 $("#food").change(function() {
   $('#text').val($(this).val());
-    let x = document.createElement('a-box');
-    $("#yourOrder").append(x);
-    x.position = '0 0.5 0';
-     x.material='color: yellow;';
+    $("#yourOrder").innerHTML("<a-box position='0 0.5 0' material='color: red;'></a-box>");
 })
 	</script>
     </body>
