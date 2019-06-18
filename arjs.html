@@ -16,26 +16,30 @@
   <body style='margin : 0px; overflow: hidden;'>
   
   <div id='debug'>
-    <select id='food'>
-      <option value="burger">burger</option>
-      <option value="beer">beer</option>
-      <option value="susi">susi</option>
+    <select value="poly">
+      <option value="a">cube</option>
+      <option value="b">beer</option>
+      <option value="c">susi</option>
     </select>
-    <input type="text" name='text' id='text' value='7.10'/>
+    <input type="text" name='text' id='text' value='7.21'/>
     </div>
 
     <a-scene embedded arjs>
       <a-marker preset="hiro" id='yourOrder'>
-	  <a-entity geometry="primitive: plane; height: 5; width: 10" material="side: double"></a-entity>
+	  <a-box position='0 0.5 0' material='color: yellow;'></a-box>
       </a-marker>
       <a-entity camera></a-entity>
     </a-scene>
 	<script>
 $("#food").change(function() {
   $('#text').val($(this).val());
-	//<a-box position='0 0.5 0' material='color: yellow;'></a-box>
-	//
-	$("#yourOrder").html("<a-box position='0 0.5 0' material='color: red;'></a-box>");
+	if($(this).val() == 'a')
+		$("#yourOrder").html("<a-box position='0 0.5 0' material='color: red;'></a-box>");
+	if($(this).val() == 'b')
+		$("#yourOrder").html('<a-entity geometry="primitive: ring; radiusInner: 0.5; radiusOuter: 1"
+          material="side: double"></a-entity>');
+        if($(this).val() == 'c')
+		$("#yourOrder").html('<a-entity geometry="primitive: cone; radiusBottom: 1; radiusTop: 0.1"></a-entity>');
 })
 	</script>
     </body>
