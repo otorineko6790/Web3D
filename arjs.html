@@ -36,7 +36,7 @@ $("#food").change(function() {
   $('#text').val($(this).val());
   if($(this).val() == 'berger'){
   	let x = document.createElement('a-box');
-  	$("#yourOrder").innerHTML = x;
+  	$("#yourOrder").append(x);
     x.position = '0 0.5 0';
      x.material='color: yellow;';
   }
