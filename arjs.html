@@ -17,7 +17,7 @@
   
   <div id='debug'>
     <select id='food'>
-      <option value="berger">berger</option>
+      <option value="burger">burger</option>
       <option value="beer">beer</option>
       <option value="susi">susi</option>
     </select>
@@ -34,6 +34,12 @@
 $("#food").change(function() {
   $('#text').val($(this).val());
 	//
+	if($(this).val()== 'beer'){
+		$("#yourOrder").html('<a-entity 
+            obj-model="obj: url(/burger-obj/burger.obj); 
+            mtl: url(/burger/burger.mtl)">
+        </a-entity>');
+	}
     $("#yourOrder").html("<a-box position='0 0.5 0' material='color: red;'></a-box>");
 })
 	</script>
