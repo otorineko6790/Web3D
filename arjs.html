@@ -21,17 +21,12 @@
       <option value="beer">beer</option>
       <option value="susi">susi</option>
     </select>
-    <input type="text" name='text' id='text' value='6.20'/>
+    <input type="text" name='text' id='text' value='7.0'/>
     </div>
 
     <a-scene embedded arjs>
       <a-marker preset="hiro" id='yourOrder'>
-	<a-assets>
-	    <a-asset-item id="burger-obj" src="burger-obj/burger.obj"></a-asset-item>
-	    <a-asset-item id="burger-mtl" src="burger-obj/burger.mtl"></a-asset-item>
-	  </a-assets>
-
-	  <a-entity obj-model="obj: #burger-obj; mtl: #burger-mtl"></a-entity>
+	  <a-entity obj-model="obj: 'burger-obj/burger.obj'; mtl: 'burger-obj/burger.mtl'"></a-entity>
       </a-marker>
       <a-entity camera></a-entity>
     </a-scene>
