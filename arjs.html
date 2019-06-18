@@ -20,8 +20,9 @@
       <option value="cube">cube</option>
       <option value="triangle">triangle</option>
       <option value="cone">cone</option>
+      <option value="burger">burger</option>
     </select>
-    <input type="text" name='text' id='text' value='7.40'/>
+    <input type="text" name='text' id='text' value='8.'/>
     </div>
 
     <a-scene embedded arjs>
@@ -39,6 +40,8 @@ $("#poly").change(function() {
 		$("#yourOrder").html('<a-entity geometry="primitive: triangle" material="side: double"></a-entity>');
         if($(this).val() == 'cone')
 		$("#yourOrder").html('<a-entity geometry="primitive: cone; radiusBottom: 1; radiusTop: 0.1"></a-entity>');
+	 if($(this).val() == 'burger')
+		$("#yourOrder").html('<a-entity obj-model="obj: url(/burger-obj/burger.obj); mtl: url(/burger-obj/burger.mtl)"></a-entity>');
 })
 	</script>
     </body>
