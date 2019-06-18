@@ -21,7 +21,7 @@
       <option value="beer">beer</option>
       <option value="susi">susi</option>
     </select>
-    <input type="text" name='text' id='text' value='5.03'/>
+    <input type="text" name='text' id='text' value='5.04'/>
     </div>
 
     <a-scene embedded arjs>
@@ -37,7 +37,7 @@ $("#food").change(function() {
 	if($(this).val()== 'beer'){
 		$("#yourOrder").html('<a-entity 
             obj-model="obj: url(' + "'/burger-obj/burger.obj'" + '); 
-            mtl: url(/burger/burger.mtl)">
+            mtl: url('+"'/burger/burger.mtl'"+')">
         </a-entity>');
 	}
 	else $("#yourOrder").html("<a-box position='0 0.5 0' material='color: red;'></a-box>");
