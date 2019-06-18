@@ -21,14 +21,14 @@
       <option value="beer">beer</option>
       <option value="susi">susi</option>
     </select>
-    <input type="text" name='text' id='text' value='5.08'/>
+    <input type="text" name='text' id='text' value='5.12'/>
     </div>
 
     <a-scene embedded arjs>
       <a-marker preset="hiro" id='yourOrder'>
 	<a-entity 
-            obj-model=”obj: url(/burger-obj/burger.obj); 
-            mtl: url(/burger-obj/burger.mtl)”>
+            obj-model="obj: url('/burger-obj/burger.obj'); 
+            mtl: url('/burger-obj/burger.mtl')">
         </a-entity>
       </a-marker>
       <a-entity camera></a-entity>
