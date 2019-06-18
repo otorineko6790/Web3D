@@ -26,7 +26,12 @@
 
     <a-scene embedded arjs>
       <a-marker preset="hiro" id='yourOrder'>
-	<a-entity json-model="src: url(burger/burger.json);"></a-entity>
+	<a-assets>
+	    <a-asset-item id="burger-obj" src="burger-obj/burger.obj"></a-asset-item>
+	    <a-asset-item id="burger-mtl" src="burger-obj/burger.mtl"></a-asset-item>
+	  </a-assets>
+
+	  <a-entity obj-model="obj: #burger-obj; mtl: #burger-mtl"></a-entity>
       </a-marker>
       <a-entity camera></a-entity>
     </a-scene>
