@@ -18,10 +18,10 @@
   <div id='debug'>
     <select id='poly'>
       <option value="cube">cube</option>
-      <option value="ring">ring</option>
+      <option value="triangle">triangle</option>
       <option value="cone">cone</option>
     </select>
-    <input type="text" name='text' id='text' value='7.35'/>
+    <input type="text" name='text' id='text' value='7.40'/>
     </div>
 
     <a-scene embedded arjs>
@@ -35,8 +35,8 @@ $("#poly").change(function() {
   $('#text').val($(this).val());
 	if($(this).val() == 'cube')
 		$("#yourOrder").html("<a-box position='0 0.5 0' material='color: red;'></a-box>");
-	if($(this).val() == 'ring')
-		$("#yourOrder").html('<a-entity geometry="primitive: ring; radiusInner: 0.5; radiusOuter: 1" material="side: double"></a-entity>');
+	if($(this).val() == 'triangle')
+		$("#yourOrder").html('<a-entity geometry="primitive: triangle" material="side: double"></a-entity>');
         if($(this).val() == 'cone')
 		$("#yourOrder").html('<a-entity geometry="primitive: cone; radiusBottom: 1; radiusTop: 0.1"></a-entity>');
 })
