@@ -26,13 +26,21 @@
 
     <a-scene embedded arjs>
       <a-marker preset="hiro">
-        <a-box position='0 0.5 0' material='color: yellow;'></a-box>
+        <div id="yourOrder">
+          <a-box position='0 0.5 0' material='color: brown;'></a-box>
+        </div>
       </a-marker>
       <a-entity camera></a-entity>
     </a-scene>
 	<script>
-	$("#food").change(function() {
+$("#food").change(function() {
   $('#text').val($(this).val());
+  if($(this).val() == 'berger'){
+  	let x = document.createElement('a-box');
+  	$("#yourOrder").innerHTML = x;
+    x.position = '0 0.5 0';
+     x.material='color: beer;';
+  }
 })
 	</script>
     </body>
