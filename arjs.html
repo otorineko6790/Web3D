@@ -26,18 +26,22 @@
 	    <option value="maleSet">maleSet</option>
 	    <option value="cake">cake</option>
     </select>
-    <input type="text" name='text' id='text' value='3.55'/>
+    <input type="text" name='text' id='text' value='4.'/>
     </div>
 
     <a-scene embedded arjs>
       <a-marker preset="hiro" id='yourOrder'>
-	  <a-box position='0 0.5 0' material='color: yellow;'></a-box>
+	  <a-assets>
+		<a-asset-item id="model" src="cake/scene.gltf"></a-asset-item>
+	  </a-assets>
+	  <a-entity position="0 1.25 -1" gltf-model="#model" scale="0.001 0.001 0.001"></a-entity>
       </a-marker>
       <a-entity camera></a-entity>
     </a-scene>
 	<script>
 $("#poly").change(function() {
   $('#text').val($(this).val());
+	//<a-box position='0 0.5 0' material='color: yellow;'></a-box>
 	if($(this).val() == 'cube')
 		$("#yourOrder").html("<a-box position='0 0.5 0' material='color: red;'></a-box>");
 	if($(this).val() == 'triangle')
@@ -48,10 +52,12 @@ $("#poly").change(function() {
 		$("#yourOrder").html('<a-entity obj-model="obj: url(burger-obj/burger.obj); mtl: url(burger-obj/burger.mtl)"></a-entity>');
 	if($(this).val() == 'car')
 		$("#yourOrder").html('<a-entity obj-model="obj: url(car/car.obj); mtl: url(car/car.mtl)"></a-entity>');
+	/*
 	if($(this).val() == 'maleSet')
 		$("#yourOrder").html('<a-assets><a-asset-item id="model2" src="model_2/scene.gltf"></a-asset-item></a-assets><a-entity position="-1 0.5 1" gltf-model="#model2" scale="0.01 0.01 0.01"></a-entity>');
 	if($(this).val() == 'cake')
 		$("#yourOrder").html('<a-assets><a-asset-item id="model" src="cake/scene.gltf"></a-asset-item></a-assets><a-entity position="0 1.25 -1" gltf-model="#model" scale="0.001 0.001 0.001"></a-entity>');
+	*/
 })
 	</script>
     </body>
