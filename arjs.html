@@ -16,10 +16,9 @@
   
   <div id='debug'>
     <select id='poly'>
-	    <option value="maleSet">maleSet</option>
 	    <option value="cake">cake</option>
+	    <option value="maleSet">maleSet</option>
     </select>
-    <input type="text" name='text' id='text' value='select'/>
     </div>
 
     <a-scene embedded arjs>
@@ -35,19 +34,6 @@
 	<script>
 $("#poly").change(function() {
   $('#text').val($(this).val());
-	//<a-box position='0 0.5 0' material='color: yellow;'></a-box>
-	/*
-	if($(this).val() == 'cube')
-		$("#yourOrder").html("<a-box position='0 0.5 0' material='color: red;'></a-box>");
-	if($(this).val() == 'triangle')
-		$("#yourOrder").html('<a-entity geometry="primitive: triangle" material="side: double"></a-entity>');
-        if($(this).val() == 'cone')
-		$("#yourOrder").html('<a-entity geometry="primitive: cone; radiusBottom: 1; radiusTop: 0.1"></a-entity>');
-	 if($(this).val() == 'burger')
-		$("#yourOrder").html('<a-entity obj-model="obj: url(burger-obj/burger.obj); mtl: url(burger-obj/burger.mtl)"></a-entity>');
-	if($(this).val() == 'car')
-		$("#yourOrder").html('<a-entity obj-model="obj: url(car/car.obj); mtl: url(car/car.mtl)"></a-entity>');
-	*/
 	if($(this).val() == 'maleSet')
 		$("#yourOrder").html('<a-entity gltf-model="#model2" scale="0.7 0.7 0.7"></a-entity>');
 	if($(this).val() == 'cake')
