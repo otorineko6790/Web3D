@@ -22,8 +22,10 @@
       <option value="cone">cone</option>
       <option value="burger">burger</option>
 	<option value="car">car</option>
+	    <option value="maleSet">maleSet</option>
+	    <option value="cake">cake</option>
     </select>
-    <input type="text" name='text' id='text' value='8.15'/>
+    <input type="text" name='text' id='text' value='3.52'/>
     </div>
 
     <a-scene embedded arjs>
@@ -45,6 +47,10 @@ $("#poly").change(function() {
 		$("#yourOrder").html('<a-entity obj-model="obj: url(burger-obj/burger.obj); mtl: url(burger-obj/burger.mtl)"></a-entity>');
 	if($(this).val() == 'car')
 		$("#yourOrder").html('<a-entity obj-model="obj: url(car/car.obj); mtl: url(car/car.mtl)"></a-entity>');
+	if($(this).val() == 'maleSet')
+		$("#yourOrder").html('<a-assets><a-asset-item id="model2" src="model_2/scene.gltf"></a-asset-item></a-assets><a-entity position="-1 0.5 1" gltf-model="#model2" scale="0.01 0.01 0.01"></a-entity>');
+	if($(this).val() == 'cake')
+		$("#yourOrder").html('<a-assets><a-asset-item id="model" src="cake/scene.gltf"></a-asset-item></a-assets><a-entity position="0 1.25 -1" gltf-model="#model" scale="0.001 0.001 0.001"></a-entity>');
 })
 	</script>
     </body>
