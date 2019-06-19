@@ -24,7 +24,7 @@
 	    <option value="maleSet">maleSet</option>
 	    <option value="cake">cake</option>
     </select>
-    <input type="text" name='text' id='text' value='4.30'/>
+    <input type="text" name='text' id='text' value='4.35'/>
     </div>
 
     <a-scene embedded arjs>
@@ -33,7 +33,7 @@
 		<a-asset-item id="model2" src="model_2/scene.gltf"></a-asset-item>
 	  </a-assets>
       <a-marker preset="hiro" id='yourOrder'>
-	  <a-entity position="0 1.25 -1" gltf-model="#model" scale="0.001 0.001 0.001"></a-entity>
+	  <a-entity gltf-model="#model" scale="0.001 0.001 0.001"></a-entity>
       </a-marker>
       <a-entity camera></a-entity>
     </a-scene>
@@ -55,7 +55,7 @@ $("#poly").change(function() {
 	if($(this).val() == 'maleSet')
 		$("#yourOrder").html('<a-entity gltf-model="#model2" scale="0.01 0.01 0.01"></a-entity>');
 	if($(this).val() == 'cake')
-		$("#yourOrder").html('<a-entity position="0 0 1" gltf-model="#model" scale="0.001 0.001 0.001"></a-entity>');
+		$("#yourOrder").html('<a-entity gltf-model="#model" scale="0.001 0.001 0.001"></a-entity>');
 	
 })
 	</script>
