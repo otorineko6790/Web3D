@@ -24,7 +24,7 @@
 	    <option value="maleSet">maleSet</option>
 	    <option value="cake">cake</option>
     </select>
-    <input type="text" name='text' id='text' value='4.28'/>
+    <input type="text" name='text' id='text' value='4.30'/>
     </div>
 
     <a-scene embedded arjs>
@@ -55,7 +55,7 @@ $("#poly").change(function() {
 	if($(this).val() == 'maleSet')
 		$("#yourOrder").html('<a-entity gltf-model="#model2" scale="0.01 0.01 0.01"></a-entity>');
 	if($(this).val() == 'cake')
-		$("#yourOrder").html('<a-entity gltf-model="#model" scale="0.001 0.001 0.001"></a-entity>');
+		$("#yourOrder").html('<a-entity position="0 0 1" gltf-model="#model" scale="0.001 0.001 0.001"></a-entity>');
 	
 })
 	</script>
